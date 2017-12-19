@@ -22,9 +22,9 @@ public class Board {
 	
 	/**
 	 * Constructor takes in 2D array and creates a deep copy
-	 * @param n: 2D array of ints
 	 * </br>pre: n must be a 9 x 9 matrix. All values must be between 0 - 9 inclusive, where 0 is an empty spot
 	 * </br>post: Instantiation of puzzle 
+	 * @param n - 2D array of ints
 	 */
 	public Board(int[][] n) {
 		if(n.length != 9 && n[0].length != 9) 
@@ -34,22 +34,46 @@ public class Board {
 		for(int row = 0; row < n.length; row++) {
 			for(int col = 0; col < n[0].length; col++) {
 				puzzle[row][col] = n[row][col];
+				if(puzzle[row][col] < 0 || puzzle[row][col] > 9)
+					throw new IllegalArgumentException("All values must be between 0-9 inclusive");
 			}
 		}
 	}
 	
 	/**
-	 * 
-	 * @param row
-	 * @param col
+	 * Set Method for puzzle - sets a specified position to a value
+	 * </br>pre: 0 <= row < 9, 0 <= col < 9, 1 <= val <= 9
+	 * </br>post: puzzle is altered by result of method call
+	 * @param row - row based on 0 base indexing
+	 * @param col - column based on 0 base indexing
+	 * @param val - value that should be inserted at position(row, col)
 	 */
-	public void setNum(int row, int col) {
-		
+	public void setVal(int row, int col, int val) {
+		if(row < 0 || row >= 9 || col < 0 || col >= 9 || val < 1 || val > 9)
+			throw new IllegalArgumentException("Parameters out of bounds");
+		puzzle[row][col] = val;
 	}
 	
-	//Checks and sees if the current puzzle is a valid Sodoku solution
-	//pre: None
-	//post: returns true if current puzzle is valid, false otherwise
+	/**
+	 * Get Method for puzzle - gets a value given position
+	 *</br> pre: 0 <= row < 9, 0 <= col < 9
+	 *</br> post: none
+	 * @param row - row based on 0 base indexing 
+	 * @param col - column based on 0 base indexing
+	 * @return Value specified at position(row, col)
+	 */
+	public int getVal(int row, int col) {
+		if(row < 0 || row >= 9 || col < 0 || col >= 9)
+			throw new IllegalArgumentException("Parameters out of bounds");
+		return puzzle[row][col];
+	}
+
+	/**
+	 * Checks and see if the current Sudoku puzzle is a valid set up (excluding 0's)
+	 * </br>pre: none
+	 * </br>post: none
+	 * @return Returns true if the current Sudoku puzzle is a valid set up, false otherwise
+	 */
 	public boolean isValidSetup() {
 		for(int row = 0; row < puzzle.length; row++) {
 			
@@ -57,7 +81,13 @@ public class Board {
 		return true;
 	}
 	
-	//Method prints out board string representation
+	/**
+	 * Method prints out the Sudoku board in a string representation
+	 * </br>pre: none
+	 * </br>post: none
+	 * @return Returns Sudoku board in string format
+	 */
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-------------------------\n");
