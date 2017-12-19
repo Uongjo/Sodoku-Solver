@@ -1,15 +1,31 @@
 import java.util.Arrays;
 
+/**
+ * A class that represents a Sudoku Board.
+ *
+ * @author Joel Uong
+ * @version 1.0
+ */
+
 public class Board {
+	//2D Array as internal storage container
 	int[][] puzzle;
-	int dimensions;
 	
-	//Standard 9 x 9 Sodoku format
+	/**
+	 * Default Constructor
+	 * </br>pre: None
+	 * </br>post: Instantiation of puzzle
+	 */
 	public Board() {
 		puzzle = new int[9][9];
 	}
 	
-	//Constructor: Instantiation of instance variables
+	/**
+	 * Constructor takes in 2D array and creates a deep copy
+	 * @param n: 2D array of ints
+	 * </br>pre: n must be a 9 x 9 matrix. All values must be between 0 - 9 inclusive, where 0 is an empty spot
+	 * </br>post: Instantiation of puzzle 
+	 */
 	public Board(int[][] n) {
 		if(n.length != 9 && n[0].length != 9) 
 			throw new IllegalArgumentException("Dimensions must be 9 x 9");
@@ -22,7 +38,18 @@ public class Board {
 		}
 	}
 	
-	//Method checks and sees if the current puzzle is a valid Sodoku solution
+	/**
+	 * 
+	 * @param row
+	 * @param col
+	 */
+	public void setNum(int row, int col) {
+		
+	}
+	
+	//Checks and sees if the current puzzle is a valid Sodoku solution
+	//pre: None
+	//post: returns true if current puzzle is valid, false otherwise
 	public boolean isValidSetup() {
 		for(int row = 0; row < puzzle.length; row++) {
 			
@@ -30,7 +57,7 @@ public class Board {
 		return true;
 	}
 	
-	//Method prints out board string format
+	//Method prints out board string representation
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-------------------------\n");
