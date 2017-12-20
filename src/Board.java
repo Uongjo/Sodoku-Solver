@@ -10,46 +10,65 @@ import java.util.Arrays;
 public class Board {
 	//2D Array as internal storage container
 	int[][] puzzle;
+	int dimension;
 
 	/**
-	 * Default Constructor
+	 * Default Constructor - standard 9 x 9 Sudoku board
 	 * </br>pre: None
-	 * </br>post: Instantiation of puzzle
+	 * </br>post: Instantiation of puzzle as a 9 x 9 board
 	 */
 	public Board() {
-		puzzle = new int[9][9];
+		dimension = 9;
+		puzzle = new int[dimension][dimension];
 	}
 
 	/**
 	 * Constructor takes in 2D array and creates a deep copy of n to puzzle
-	 * </br>pre: n must be a 9 x 9 matrix. All values must be between 0 - 9 inclusive, where 0 is an empty spot
-	 * </br>post: Instantiation of puzzle 
+	 * </br>pre: dimension = n.length = n[0].length. Dimension must be a perfect square. 
+	 * </br>All values in n must be between 0 - dimension inclusive, where 0 is an empty spot
+	 * </br>post: puzzle[row][col] == n[row][col] for all values of row and col
 	 * @param n - 2D array of ints
 	 */
 	public Board(int[][] n) {
-		if(n.length != 9 && n[0].length != 9) 
-			throw new IllegalArgumentException("Dimensions must be 9 x 9");
-		puzzle = new int[9][9];
+		dimension = n.length;
+		if(n.length != n[0].length) 
+			throw new IllegalArgumentException("Parameter must be a square 2D array");
+		if(!isPerfectSquare(dimension))
+			throw new IllegalArgumentException("Parameter must have dimensions of a perfect square");
+		puzzle = new int[dimension][dimension];
 		//Deep copy of 2D Array
 		for(int row = 0; row < n.length; row++) {
 			for(int col = 0; col < n[0].length; col++) {
 				puzzle[row][col] = n[row][col];
-				if(puzzle[row][col] < 0 || puzzle[row][col] > 9)
-					throw new IllegalArgumentException("All values must be between 0-9 inclusive");
+				if(puzzle[row][col] < 0 || puzzle[row][col] > dimension)
+					throw new IllegalArgumentException("All values must be between 0-dimension inclusive");
 			}
 		}
+	}
+	
+	/**
+	 * Helper method for constructor - checks if dimension is a perfect square
+	 * </br>pre: none
+	 * @param num - Parameter being checked to be perfect square
+	 * @return Returns true if num is a perfect square, false otherwise
+	 */
+	private boolean isPerfectSquare(int num) {
+		int sqRt = (int)Math.sqrt(num);
+		if(sqRt * sqRt == num)
+			return true;
+		return false;
 	}
 
 	/**
 	 * Set Method for puzzle - sets a specified position to a value
-	 * </br>pre: 0 <= row < 9, 0 <= col < 9, 1 <= val <= 9
+	 * </br>pre: 0 <= row < dimension, 0 <= col < dimension, 0 <= val <= dimension
 	 * </br>post: puzzle[row][col] = val
 	 * @param row - row based on 0 base indexing
 	 * @param col - column based on 0 base indexing
 	 * @param val - value that should be inserted at position(row, col)
 	 */
 	public void setVal(int row, int col, int val) {
-		if(row < 0 || row >= 9 || col < 0 || col >= 9 || val < 1 || val > 9)
+		if(row < 0 || row >= dimension || col < 0 || col >= dimension || val < 0 || val > dimension)
 			throw new IllegalArgumentException("Parameters out of bounds");
 		puzzle[row][col] = val;
 	}
@@ -62,7 +81,7 @@ public class Board {
 	 * @return Value specified at position(row, col)
 	 */
 	public int getVal(int row, int col) {
-		if(row < 0 || row >= 9 || col < 0 || col >= 9)
+		if(row < 0 || row >= dimension || col < 0 || col >= dimension)
 			throw new IllegalArgumentException("Parameters out of bounds");
 		return puzzle[row][col];
 	}
@@ -108,7 +127,13 @@ public class Board {
 	 */
 	private boolean columnCheck() {
 		for(int col = 0; col < puzzle[0].length; col++) {
-
+			for(int i = 0; i < puzzle[0].length; i++) {
+				if(puzzle[i][col] != 0) {
+					for(int j = i + 1; j < puzzle[0].length; j++) {
+						
+					}
+				}
+			}
 		}
 		return true;
 	}
@@ -129,6 +154,7 @@ public class Board {
 	 * @return Returns Sudoku board in string format
 	 */
 	@Override
+	//UPDATE METHOD FOR BIGGER BOARDS
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-------------------------\n");
