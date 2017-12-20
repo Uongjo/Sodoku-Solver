@@ -85,6 +85,15 @@ public class Board {
 			throw new IllegalArgumentException("Parameters out of bounds");
 		return puzzle[row][col];
 	}
+	
+	/**
+	 * Get method for dimension
+	 * pre: none
+	 * @return Returns dimension of puzzle 
+	 */
+	public int getDimension() {
+		return dimension;
+	}
 
 	/**
 	 * Checks and see if the current Sudoku puzzle is a valid set up (excluding 0's)
@@ -169,11 +178,15 @@ public class Board {
 	 * @return Returns Sudoku board in string format
 	 */
 	@Override
-	//UPDATE METHOD FOR BIGGER BOARDS
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		int sqRt = (int)Math.sqrt(dimension);
-		sb.append("-------------------------\n");
+		String line = "";
+		int lineLength = (sqRt + 1) + (sqRt) * (sqRt + sqRt + 1);
+		for(int i = 0; i < lineLength; i++) {
+			line += "-";
+		}
+		sb.append(line + "\n");	
 		for(int i = 1; i <= dimension; i++) {
 			for(int j = 1; j <= dimension; j++) {
 				if(j == 1) {
@@ -186,7 +199,7 @@ public class Board {
 			}
 			sb.append("\n");
 			if(i % sqRt == 0) 
-				sb.append("-------------------------\n");	
+				sb.append(line + "\n");	
 		}
 		return sb.toString();
 	}
