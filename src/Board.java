@@ -130,7 +130,8 @@ public class Board {
 			for(int i = 0; i < puzzle[0].length; i++) {
 				if(puzzle[i][col] != 0) {
 					for(int j = i + 1; j < puzzle[0].length; j++) {
-						
+						if(puzzle[i][col] == puzzle[j][col])
+							return false;
 					}
 				}
 			}
@@ -144,32 +145,47 @@ public class Board {
 	 * @return Returns true if all sub divisions contain no duplicates, false otherwise
 	 */
 	private boolean subGridCheck() {
+		int sqRt = (int)Math.sqrt(dimension);
+		for(int i = 0; i < sqRt; i++) {
+			int increment = i * sqRt;
+			for(int val = 1; val <= dimension; val++) {
+				int valCounter = 0;
+				for(int row = 0 + increment; row < sqRt + increment; row++) {
+					for(int col = 0 + increment; col < sqRt + increment; col++) {
+						if(puzzle[row][col] == val)
+							valCounter++;
+					}
+				}
+				if(valCounter >= 2)
+					return false;
+			}
+		}
 		return true;
 	}
 
 	/**
 	 * Method prints out the Sudoku board in a string representation
 	 * </br>pre: none
-	 * </br>post: none
 	 * @return Returns Sudoku board in string format
 	 */
 	@Override
 	//UPDATE METHOD FOR BIGGER BOARDS
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		int sqRt = (int)Math.sqrt(dimension);
 		sb.append("-------------------------\n");
-		for(int i = 1; i <= 9; i++) {
-			for(int j = 1; j <= 9; j++) {
+		for(int i = 1; i <= dimension; i++) {
+			for(int j = 1; j <= dimension; j++) {
 				if(j == 1) {
 					sb.append("| ");
 				}
 				sb.append(puzzle[i - 1][j - 1]);
 				sb.append(" ");
-				if(j % 3 == 0) 
+				if(j % sqRt == 0) 
 					sb.append("| ");
 			}
 			sb.append("\n");
-			if(i % 3 == 0) 
+			if(i % sqRt == 0) 
 				sb.append("-------------------------\n");	
 		}
 		return sb.toString();
