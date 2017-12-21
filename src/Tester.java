@@ -11,6 +11,4 @@ public class Tester {
 		System.out.println(test.solve());
 		
 	}
-	
-
 }

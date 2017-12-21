@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Solver {
-	
+	//Board that will be solved
 	Board board;
 	
 	/**

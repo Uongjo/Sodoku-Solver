@@ -24,7 +24,7 @@ public class Board {
 
 	/**
 	 * Constructor takes in 2D array and creates a deep copy of n to puzzle
-	 * </br>pre: dimension = n.length = n[0].length. Dimension must be a perfect square. 
+	 * </br>pre: dimension = n.length = n[0].length. Dimension must be a perfect square 
 	 * </br>All values in n must be between 0 - dimension inclusive, where 0 is an empty spot
 	 * </br>post: puzzle[row][col] == n[row][col] for all values of row and col
 	 * @param n - 2D array of ints
