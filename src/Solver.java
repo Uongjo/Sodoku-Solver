@@ -11,7 +11,7 @@ public class Solver {
 	
 	/**
 	 * Default Constructor
-	 * </br>pre: none
+	 * </br>pre: none 
 	 */
 	public Solver() {
 		board = new Board();
@@ -69,7 +69,7 @@ public class Solver {
 	 * @return returns true if Sudoku puzzle is solveable, false otherwise
 	 */
 	private boolean helpSolve(int row, int col) {
-		System.out.println(board);
+		//System.out.println(board);
 		if(board.isValidSetup()) {
 			if(row == board.getDimension() - 1 && col == board.getDimension()) {
 				return true;
