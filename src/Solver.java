@@ -89,4 +89,52 @@ public class Solver {
 		}
 		return false;
 	}
+	
+	/**
+	 * Method solves Sudoku puzzle iteratively
+	 * </br>pre: none
+	 * </br>post: board is altered as result of method call
+	 * @return - returns solved board in string representation. If unsolvable puzzle, returns original puzzle with error message
+	 */
+	public String iterativeSolve() {
+		
+		return "";
+	}
+	
+	/**
+	 * 
+	 * Private helping class that helps solve Sudoku puzzle
+	 * @author Joel Uong
+	 *
+	 */
+	private static class Move {
+		
+		private int row;
+		private int col;
+		private int val;
+		
+		/**
+		 * Zero Argument Constructor
+		 * <br>pre: None
+		 * <br>post: row, col, and val are set to 0
+		 */
+		public Move() {
+			this(0,0,0);
+		}
+		
+		/**
+		 * Constructor to set row, col, and val
+		 * <br>pre: 0 <= r < board.getDimension(), 0 <= c < board.getDimension(),
+		 * <br>0 <= v <= board.getDimension()
+		 * <br>post: row, col, and val are set to r, c, and v respectively  
+		 * @param r - row based on 0 base indexing
+		 * @param c - column based on 0 base indexing
+		 * @param v - value at board.getVal(r,c)
+		 */
+		public Move(int r, int c, int v) {
+			row = r;
+			col = c;
+			val = v;
+		}
+	}
 }
