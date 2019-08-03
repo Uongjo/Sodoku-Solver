@@ -7,5 +7,5 @@
 
 ## Plans for the future
 
-Optimization of algorithm
-Implement a UI
+1. Optimization of algorithm
+2. Implement a UI
