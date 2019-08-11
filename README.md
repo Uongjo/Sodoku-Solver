@@ -17,6 +17,7 @@ cd src
 ```
 
 3. Edit input.txt for the sudoku puzzle you want to solve in the following format:
+
 ```
 4
 2 0 0 0 
@@ -30,6 +31,7 @@ cd src
   * Any non-zero number represents the value within that cell
   
 4. Run the following commands to solve the sudoku puzzle
+
 ```
 javac Tester.java
 java Tester
