@@ -2,7 +2,7 @@
 
 ## How to run Sudoku Solver
 
-If you don't have Java already installed, go install it [https://java.com/en/download/help/download_options.xml]here
+If you don't have Java already installed, go install it [https://java.com/en/download/help/download_options.xml](here)
 
 1. Clone the Repo
 
