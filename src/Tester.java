@@ -6,7 +6,7 @@ public class Tester {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		Scanner s = new Scanner(new File("test.txt"));
+		Scanner s = new Scanner(new File("input.txt"));
 		Solver test = new Solver(s);
 		System.out.println(test.solve());
 		
